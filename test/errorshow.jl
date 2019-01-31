@@ -560,7 +560,7 @@ end
     # LoadError and InitError used to print the nested exception.
     # This is now dealt with via the exception stack so these print very simply:
     @test sprint(Base.showerror, LoadError("somefile.jl", 10, ErrorException("retained for backward compat"))) ==
-          "LoadError in expression starting at somefile.jl:10"
+          "Error while loading expression starting at somefile.jl:10"
     @test sprint(Base.showerror, InitError(:some_module, ErrorException("retained for backward compat"))) ==
           "InitError during initialization of module some_module"
 end

@@ -84,7 +84,11 @@ function showerror(io::IO, ex, bt; backtrace=true)
     end
 end
 
-showerror(io::IO, ex::LoadError) = print(io, "LoadError in expression starting at ", ex.file, ":", ex.line)
+function showerror(io::IO, ex::LoadError, bt; backtrace=true)
+    print(io, "Error while loading expression starting at ", ex.file, ":", ex.line)
+end
+showerror(io::IO, ex::LoadError) = showerror(io, ex, [])
+
 showerror(io::IO, ex::InitError) = print(io, "InitError during initialization of module ", ex.mod)
 
 function showerror(io::IO, ex::DomainError, bt; backtrace=true)
